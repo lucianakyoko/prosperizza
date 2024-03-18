@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.step-item {
+  @apply relative flex flex-col justify-center gap-2 items-center w-36 ;
+}
+.step-item:not(:first-child)::before {
+  @apply content-[''] bg-brown-300 absolute w-full h-[4px] right-2/4 top-1/4 -translate-y-2/4 lg:right-20; 
+}
+.step {
+  @apply w-7 h-7 flex items-center justify-center z-10 relative bg-brown-300 rounded-full text-xs text-gray-100 leading-none;
+}
+.active .step {
+  @apply bg-gray-850;
+}
+.complete .step {
+  @apply bg-gray-850;
+}
+.complete p,
+.active p {
+  @apply text-gray-850 font-extrabold;
+}
+.complete:not(:first-child)::before,
+.active:not(:first-child)::before {
+  @apply bg-gray-850;
+}
