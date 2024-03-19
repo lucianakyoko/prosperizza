@@ -11,7 +11,7 @@ export const ProsperizzaLogo = () => {
   return (
     <NextLink href='/'>
       <span className="text-yellow-100 flex items-center gap-2">
-        <Pizza />
+        <Pizza weight='light' size={32}/>
         <span 
           className={`${pacificoFont.className} text-xl md:text-2xl`}
         >
