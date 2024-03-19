@@ -35,7 +35,14 @@ module.exports = {
       },
     },
     extend: {
+      lineHeight: { 
+        'none': '0'
+      },
       backgroundImage: {
+        cheff: "url(/cheff.png)",
+        table: "url(/background.png)",
+        pizza: "url(/pizza.png)",
+        cheese: "url(/cheese-tomato.png)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
