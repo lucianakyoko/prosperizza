@@ -1,9 +1,3 @@
-import { Navbar } from "@/components/Navbar";
+import { HomeScreen } from "./Screens/HomeScreen";
 
-export default function Home() {
-  return (
-    <main>
-        Home
-    </main>
-  );
-}
+export default HomeScreen;
