@@ -19,3 +19,20 @@
     padding: 0 8rem;
   }
 }
+
+.primary-button {
+  @apply text-gray-900 text-base font-medium py-2 px-5 bg-yellow-100 hover:bg-yellow-200 rounded-3xl flex items-center justify-center;
+}
+.primary-button-not-allowed {
+  @apply bg-brown-50;
+}
+.secondary-button {
+  @apply text-gray-900 hover:text-gray-100 hover:bg-gray-900 text-base font-medium py-2 px-5 rounded-3xl flex items-center justify-center border-gray-900 border-2;
+}
+.secondary-button-not-allowed {
+  @apply cursor-not-allowed opacity-60 text-gray-900 hover:text-gray-900 hover:bg-gray-100;
+}
+
+.buttons-wrapper {
+  @apply flex items-center gap-6 justify-center;
+}
