@@ -1,9 +1,10 @@
-import { ShoppingCartSimple } from "@phosphor-icons/react/dist/ssr";
-import { useContext } from "react";
+import { useContext } from 'react';
 import { ModalContext } from "@/app/context/ModalContext";
+import { ShoppingCartSimple } from "@phosphor-icons/react/dist/ssr";
 
 export const NewsItem = () => {
-  const {handleModal} = useContext(ModalContext);
+  const {openModal} = useContext(ModalContext);
+  const handleClick = () => openModal();
 
   return (
     <li className="w-[242px] rounded-t-full bg-brown-200 p-4 flex flex-col gap-4 items-center">
@@ -11,7 +12,7 @@ export const NewsItem = () => {
         <img src="/test-img.png" className="w-[180px] h-[180px] rounded-full"/>
         <div 
             className="absolute inset-0 hover:bg-black-900 rounded-full cursor-pointer flex justify-center items-center opacity-0 hover:opacity-100"
-            onClick={handleModal}
+            onClick={handleClick}
           >
             <ShoppingCartSimple weight="fill" className="text-yellow-100 text-4xl" />
           </div>

@@ -1,10 +1,13 @@
-import { X } from "@phosphor-icons/react/dist/ssr";
 import { useContext } from "react";
 import { ModalContext } from "@/app/context/ModalContext";
 
-export const Modal = ({ children }) => {
-  const {handleModal} = useContext(ModalContext);
+import { X } from "@phosphor-icons/react/dist/ssr";
 
+
+export const Modal = ({ children }) => {
+  const { isOpen, closeModal } = useContext(ModalContext);
+  if(!isOpen) return null;
+  
   return (
     <div 
       className="w-screen h-screen bg-black-900 fixed top-0 left-0 z-20 flex justify-center md:items-center"
@@ -13,7 +16,7 @@ export const Modal = ({ children }) => {
           <X 
             size={32} 
             className="text-red-200 hover:text-red-100 absolute right-4 cursor-pointer"
-            onClick={handleModal}
+            onClick={closeModal}
           />
           <div className="mt-12">
             {children}

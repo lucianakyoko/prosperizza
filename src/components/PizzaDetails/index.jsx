@@ -1,13 +1,14 @@
-'use client'
 import { useContext } from "react";
 import { ModalContext } from "@/app/context/ModalContext";
+
 import { Modal } from "../Modal";
 import { Title } from "@/components/Title";
 import { PizzaSizeOption } from "./PizzaSizeOption";
 import { MinusCircle, PlusCircle } from "@phosphor-icons/react/dist/ssr";
 
 export const PizzaDetails = () => {
-  const {handleModal} = useContext(ModalContext);
+  const {closeModal} = useContext(ModalContext);
+  const handleAddButton = () => closeModal();
 
   return (
     <Modal>
@@ -37,7 +38,7 @@ export const PizzaDetails = () => {
                 <span className="font-light text-xs sm:text-sm">Subtotal</span>
                 <span className="font-medium text-sm sm:text-base">R$115,80</span>
               </div>
-              <button className="primary-button" onClick={handleModal}>Adicionar</button>
+              <button className="primary-button" onClick={handleAddButton}>Adicionar</button>
             </div>
           </div>
         </div>

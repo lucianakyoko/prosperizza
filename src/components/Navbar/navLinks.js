@@ -1,7 +1,7 @@
 export const navLinks = [
   {
     label: 'Cardápio',
-    href: '/cardápio'
+    href: '/cardapio'
   },
   {
     label: 'Sobre',

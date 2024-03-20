@@ -4,7 +4,11 @@ import { ModalContext } from "@/app/context/ModalContext";
 import { ShoppingCartSimple } from "@phosphor-icons/react/dist/ssr";
 
 export const PizzaItemCard = () => {
-  const {handleModal} = useContext(ModalContext);
+  const {openModal} = useContext(ModalContext);
+  const handleClick = (event) => {
+    event.preventDefault();
+    openModal()
+  };
   
   return (
     <li className="image-hover w-[140px] sm:w-[169px] flex flex-col gap-3">
@@ -17,7 +21,7 @@ export const PizzaItemCard = () => {
           />
           <div 
             className="absolute inset-0 hover:bg-black-900 rounded-xl flex justify-center items-center opacity-0 hover:opacity-100"
-            onClick={handleModal}
+            onClick={handleClick}
           >
             <ShoppingCartSimple weight="fill" className="text-yellow-100 text-4xl" />
           </div>

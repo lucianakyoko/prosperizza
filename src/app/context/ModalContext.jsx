@@ -4,13 +4,17 @@ import  { createContext, useState } from 'react';
 export const ModalContext = createContext();
 
 export const ModalProvider = ({children}) => {
-  const [openModal, setOpenModal] = useState(false);
-  const handleModal = () => setOpenModal(!openModal);
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   return (
-    <ModalContext.Provider value={{openModal, handleModal}}>
+    <ModalContext.Provider value={{isOpen, openModal, closeModal}}>
       {children}
     </ModalContext.Provider>
   );
 };
 
+// export const useModal = () => {
+//   return useContext(ModalContext);
+// }

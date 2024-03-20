@@ -7,7 +7,7 @@ import { PromotionItem } from "./PromotionItem";
 import { PizzaDetails } from "@/components/PizzaDetails";
 
 export const PromotionSection = () => {
-  const {openModal} = useContext(ModalContext);
+  const { isOpen } = useContext(ModalContext);
 
   return (
     <section className="flex flex-col gap-5 lg:gap-6">
@@ -17,7 +17,7 @@ export const PromotionSection = () => {
         <PromotionItem />
       </ul>
 
-      { openModal && <PizzaDetails />}
+      { isOpen && <PizzaDetails />}
     </section>
   );
 }
