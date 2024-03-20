@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.about-section-content-container {
+  @apply flex flex-col gap-2 pb-4;
+}
+.about-section-title {
+  @apply text-lg text-brown-100 font-semibold;
+}
+.about-section-list-container {
+  @apply flex flex-col gap-2;
+}
