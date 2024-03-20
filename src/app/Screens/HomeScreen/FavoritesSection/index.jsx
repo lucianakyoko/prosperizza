@@ -1,7 +1,7 @@
 'use client';
 import NextLink from "next/link";
 import { useContext } from "react";
-import { ModalContext } from "@/app/context/ModalContext";
+import { ModalContext } from "@/context/ModalContext";
 
 import { PizzaDetails } from "@/components/PizzaDetails";
 import { PizzaItemCard } from "@/components/PizzaItemCard";

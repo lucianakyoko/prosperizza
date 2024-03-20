@@ -1,6 +1,6 @@
 'use client';
 import { useContext } from "react";
-import { ModalContext } from "@/app/context/ModalContext";
+import { ModalContext } from "@/context/ModalContext";
 import { PizzaItemCard } from "@/components/PizzaItemCard";
 import { PizzaDetails } from "@/components/PizzaDetails";
 

@@ -2,7 +2,7 @@
 import { Title } from "@/components/Title";
 import { FilterItem } from "./FilterItem";
 import { MenuList } from "./MenuList";
-import { ModalProvider } from "@/app/context/ModalContext";
+import { ModalProvider } from "@/context/ModalContext";
 
 export const MenuScreen = () => {
 

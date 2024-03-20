@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ModalContext } from "@/app/context/ModalContext";
+import { ModalContext } from "@/context/ModalContext";
 import { ShoppingCartSimple } from "@phosphor-icons/react/dist/ssr";
 
 export const NewsItem = () => {

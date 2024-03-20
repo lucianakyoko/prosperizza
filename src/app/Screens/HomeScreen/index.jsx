@@ -1,4 +1,4 @@
-import { ModalProvider } from "@/app/context/ModalContext";
+import { ModalProvider } from "@/context/ModalContext";
 
 import { FavoritesSection } from "./FavoritesSection";
 import { HeroSection } from "./HeroSection";
