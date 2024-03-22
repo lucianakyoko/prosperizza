@@ -3,11 +3,11 @@ import { useContext } from "react";
 import { ModalContext } from "@/context/ModalContext";
 import { ShoppingCartSimple } from "@phosphor-icons/react/dist/ssr";
 
-export const PizzaItemCard = () => {
+export const PizzaItemCard = ({pizza}) => {
   const {openModal} = useContext(ModalContext);
   const handleClick = (event) => {
     event.preventDefault();
-    openModal()
+    openModal();
   };
   
   return (
@@ -15,8 +15,8 @@ export const PizzaItemCard = () => {
       <div className="w-full h-[140px] sm:h-[169px] rounded-xl relative">
         <NextLink href='/'>
           <img 
-            src="/test-img.png" 
-            alt="teste" 
+            src={pizza.image} 
+            alt={pizza.pizza} 
             className="cursor-pointer"
           />
           <div 
@@ -28,8 +28,8 @@ export const PizzaItemCard = () => {
         </NextLink>
       </div>
       <div>
-        <span className="text-base text-gray-850 font-medium">Nome da Pizza</span>
-        <p className="text-brown-100 text-sm">Garlic sauce, mozzarella, mashed potato, cheddar,  sour cream, scallion</p>
+        <span className="text-base text-gray-850 font-medium">{pizza.pizza}</span>
+        <p className="text-brown-100 text-sm">{pizza.ingredients}</p>
       </div>
     </li>
   );
