@@ -15,7 +15,7 @@ export const PromotionSection = () => {
       <Title type='dark'>Promoções Que Debugam A Fome</Title>
       <ul className="flex flex-col gap-4 lg:gap-6 items-center sm:items-start lg:flex-row">
         {promotions.map(promotion => (
-          <PromotionItem promotion={promotion} />
+          <PromotionItem key={promotion.id} promotion={promotion} />
         ))}
       </ul>
 

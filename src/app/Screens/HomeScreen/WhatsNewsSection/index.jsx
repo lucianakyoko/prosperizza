@@ -15,7 +15,7 @@ export const WhatsNewsSection = ({pizzas}) => {
       
       <ul className="flex flex-col items-center gap-6 sm:flex-row sm:flex-wrap"> 
         {pizzas.map(pizza => (
-          <NewsItem pizza={pizza} />
+          <NewsItem key={pizza.id} pizza={pizza} />
         ))}
       </ul>
 
