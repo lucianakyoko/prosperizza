@@ -1,4 +1,4 @@
-export const InputField = ({name, label, placeholder, type='text', className}) => {
+export const InputField = ({name, label, placeholder, type='text', className, value, onChange}) => {
   return (
     <label htmlFor={name} className={`flex flex-col gap-1 ${className}`}>
       <span className="text-brown-200 text-base">{label}</span>
@@ -8,6 +8,8 @@ export const InputField = ({name, label, placeholder, type='text', className}) =
         name={name} 
         id={name} 
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </label>
   );
