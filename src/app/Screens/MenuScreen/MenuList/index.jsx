@@ -13,9 +13,10 @@ export const MenuList = ({pizzas}) => {
         {pizzas.map(pizza => (
           <PizzaItemCard key={pizza.id} pizza={pizza}/>
         ))}
+      
+        { isOpen && <PizzaDetails/> }
       </ul>
 
-      { isOpen && <PizzaDetails /> }
     </div>
   );
 }

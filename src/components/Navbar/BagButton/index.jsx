@@ -1,13 +1,15 @@
 'use client';
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { OrderContext } from "@/context/OrderContext";
 import { ShoppingBag } from "@phosphor-icons/react/dist/ssr";
 import { BagModal } from "./BagModal";
 
 export const BagButton = () => {
+  const {calculateTotalQuantity} = useContext(OrderContext);
   const [openBagModal, setOpenBagModal] = useState(false);
   const handleBagModal = () => setOpenBagModal(!openBagModal);
-  const bagItemsQuantity = 1;
+  const bagItemsQuantity = calculateTotalQuantity();
 
   return (
     <div className="relative">

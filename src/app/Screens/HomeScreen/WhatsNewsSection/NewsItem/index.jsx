@@ -3,8 +3,12 @@ import { ModalContext } from "@/context/ModalContext";
 import { ShoppingCartSimple } from "@phosphor-icons/react/dist/ssr";
 
 export const NewsItem = ({pizza}) => {
-  const {openModal} = useContext(ModalContext);
-  const handleClick = () => openModal();
+  const {openModal, setSelectedPizza} = useContext(ModalContext);
+  const handleClick = event => {
+    event.preventDefault();
+    openModal();
+    setSelectedPizza(pizza);
+  };
 
   return (
     <li className="w-[242px] rounded-t-full bg-brown-200 p-4 flex flex-col gap-4 items-center">
@@ -20,7 +24,7 @@ export const NewsItem = ({pizza}) => {
 
       <div className="text-gray-100 flex flex-col items-center gap-3">
         <p>{pizza.pizza}</p>
-        <span className="font-bold">R${pizza.sizes.medio.price},00</span>
+        <span className="font-thin">{pizza.ingredients}</span>
       </div>
     </li>
   );

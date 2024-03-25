@@ -9,7 +9,7 @@ import { EmptyBag } from "./EmptyBag";
 import { PaymentStep } from "./PaymentStep";
 
 export const BagModal = ({handleModal, bagItemsQuantity}) => {
-  const [currentBagStep, setCurrentBagStep] = useState(3);
+  const [currentBagStep, setCurrentBagStep] = useState(1);
   const [isBagStepComplete, setIsBagStepComplete] = useState(false);
 
   const handleNextBagStep = () => {

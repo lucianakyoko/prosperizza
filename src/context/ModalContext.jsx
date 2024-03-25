@@ -5,16 +5,29 @@ export const ModalContext = createContext();
 
 export const ModalProvider = ({children}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const [selectedPizza, setSelectedPizza] = useState('');
 
+  const openModal = pizza => {
+    setIsOpen(true);
+    setSelectedPizza(pizza);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setSelectedPizza(null);
+  };
+
+  const values = {
+    isOpen,
+    openModal,
+    closeModal,
+    selectedPizza,
+    setSelectedPizza
+  }
   return (
-    <ModalContext.Provider value={{isOpen, openModal, closeModal}}>
+    <ModalContext.Provider value={values}>
       {children}
     </ModalContext.Provider>
   );
 };
 
-// export const useModal = () => {
-//   return useContext(ModalContext);
-// }

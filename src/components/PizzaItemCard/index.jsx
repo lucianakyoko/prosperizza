@@ -4,10 +4,11 @@ import { ModalContext } from "@/context/ModalContext";
 import { ShoppingCartSimple } from "@phosphor-icons/react/dist/ssr";
 
 export const PizzaItemCard = ({pizza}) => {
-  const {openModal} = useContext(ModalContext);
+  const {openModal, setSelectedPizza} = useContext(ModalContext);
   const handleClick = (event) => {
     event.preventDefault();
     openModal();
+    setSelectedPizza(pizza);
   };
   
   return (

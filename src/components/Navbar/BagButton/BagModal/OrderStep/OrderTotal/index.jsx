@@ -3,12 +3,14 @@ import { CouponContext } from "@/context/CouponContext";
 
 import { CouponField } from "./CouponField";
 import { formatPrice } from "@/utils/formatPrice";
+import { OrderContext } from "@/context/OrderContext";
 
 export const OrderTotal = () => {
   const { discount } = useContext(CouponContext);
-  const subtotalProvisorio = 89.70;
+  const { calculateTotalPrice } = useContext(OrderContext);
+  const subtotal = calculateTotalPrice();
   const deliveryFee = 8.9;
-  const total = (subtotalProvisorio + deliveryFee) - discount;
+  const total = (subtotal + deliveryFee) - discount;
 
   return (
     <div className="flex flex-col sm:flex-row justify-end sm:justify-between items-end gap-3 pt-2 w-full ">
@@ -18,7 +20,7 @@ export const OrderTotal = () => {
       <div className="flex flex-col gap-2 border-b-2 border-brown-150">
         <div className="flex justify-between text-base lg:text-lg">
           <span>Subtotal</span>
-          <span className="font-medim">R${formatPrice(subtotalProvisorio)}</span>
+          <span className="font-medim">R${formatPrice(subtotal)}</span>
         </div>
         <div className="flex justify-between text-base lg:text-lg">
           <span>Taxa de entrega</span>
