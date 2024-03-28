@@ -1,6 +1,8 @@
 'use client';
 import { useContext, useState } from "react";
 import { ModalContext } from "@/context/ModalContext";
+import { UserDataContext } from "@/context/UserDataContext";
+
 import { Stepper } from "@/components/Stepper"
 import { signupStepsList } from "../signup-step-list";
 import { PersonalInfoStep } from "../PersonalInfoStep";
@@ -9,16 +11,20 @@ import { AccessInfoStep } from "../AccessInfoStep";
 import { ConfirmationModal } from "../ConfirmationModal";
 
 export const RegisterSteps = () => {
-    const {openModal, isOpen} = useContext(ModalContext);  
+  const {openModal, isOpen} = useContext(ModalContext);
+  const {userData, isUserStepFormValidate} = useContext(UserDataContext);
   const [currentRegisterStep, setCurrentRegisterStep] = useState(1);
   const [isRegisterStepComplete, setIsRegisterStepComplete] = useState(false);
 
   const handleNextRegisterStep = () => {
-    if(currentRegisterStep === 3) {
-      setCurrentRegisterStep(3);
+    if(!isUserStepFormValidate) {
+      setCurrentRegisterStep(currentRegisterStep);
     } else {
       setCurrentRegisterStep(currentRegisterStep +1);
-    };
+    }
+    if(currentRegisterStep === 3) {
+      setCurrentRegisterStep(3);
+    } 
   };
 
   const handlePreviousRegisterStep = () => {
@@ -57,7 +63,7 @@ export const RegisterSteps = () => {
         }
           {
             currentRegisterStep < 3 ?
-              <button className="primary-button" onClick={handleNextRegisterStep}>Avançar</button>
+              <button className={`primary-button ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} onClick={handleNextRegisterStep}>Avançar</button>
               :
               <button className="primary-button" onClick={handleClick}>Finalizar</button>
           }

@@ -1,4 +1,17 @@
-export const InputField = ({name, label, placeholder, type='text', className, value, onChange}) => {
+export const InputField = (props) => {
+  const {
+    name, 
+    label, 
+    placeholder, 
+    type='text', 
+    className, 
+    value, 
+    onChange, 
+    validate, 
+    mask,
+    ...restProps
+  } = props;
+
   return (
     <label htmlFor={name} className={`flex flex-col gap-1 ${className}`}>
       <span className="text-brown-200 text-base">{label}</span>
@@ -10,6 +23,8 @@ export const InputField = ({name, label, placeholder, type='text', className, va
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+    
+        {...restProps}
       />
     </label>
   );
