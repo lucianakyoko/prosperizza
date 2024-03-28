@@ -1,3 +1,6 @@
 export const cepMask = (cep) => {
-  return cep.replace(/(\d{5})(\d)/, '$1-$2');
+  const cleanedCEP = cep ? cep.replace(/\D/g, '') : ''; 
+  let maskedCEP = cleanedCEP.replace(/(\d{5})(\d)/, '$1-$2');
+
+  return maskedCEP;
 };
