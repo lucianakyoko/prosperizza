@@ -24,7 +24,7 @@ export const RegisterSteps = () => {
     }
     if(currentRegisterStep === 3) {
       setCurrentRegisterStep(3);
-    } 
+    }
   };
 
   const handlePreviousRegisterStep = () => {
@@ -36,7 +36,9 @@ export const RegisterSteps = () => {
   };
   const handleClick = (event) => {
     event.preventDefault();
-    openModal();
+    if(isUserStepFormValidate) {
+      openModal();
+    }
   };
 
   return (
@@ -65,7 +67,7 @@ export const RegisterSteps = () => {
             currentRegisterStep < 3 ?
               <button className={`primary-button ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} onClick={handleNextRegisterStep}>Avançar</button>
               :
-              <button className="primary-button" onClick={handleClick}>Finalizar</button>
+              <button className={`primary-button ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} onClick={handleClick}>Finalizar</button>
           }
         </div>
       </div>
