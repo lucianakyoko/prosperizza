@@ -44,7 +44,7 @@ export const AccessInfoStep = () => {
     }
     return;
   }
-  console.log(userData)
+
   return (
     <div className="flex flex-col gap-6">
       <Title type='dark'>Dados de Acesso</Title>
