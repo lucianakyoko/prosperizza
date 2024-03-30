@@ -58,6 +58,7 @@ export const AddressInfoStep = () => {
             name='cep' 
             label='CEP* (Somente números)' 
             placeholder='__.___-___' 
+            autoFocus
             required
             value={userData.cep ? cepMask(userData.cep) : ''}
             onChange={e => handleUserDataChange('cep', e.target.value)}

@@ -49,7 +49,7 @@ export const PersonalInfoStep = () => {
     let errorMessage = '';
 
     switch (name) {
-      case 'name' : errorMessage = validateName(value);
+      case 'fullName' : errorMessage = validateName(value);
       break;
       case 'cpf': errorMessage = validateCPF(value);
       break;
@@ -67,16 +67,17 @@ export const PersonalInfoStep = () => {
       <div className="grid grid-cols-2 gap-4 sm:gap-6">
         <div className="col-span-2">
           <InputField 
-            name='name' 
+            name='fullName' 
             label='Nome Completo*' 
+            autoFocus
             placeholder='Digite o seu nome completo'
             required 
             className="col-span-2"
-            value={userData.name || ''}
-            onChange={e => handleUserDataChange('name', e.target.value)}
-            onBlur={e => handleBlur('name', e.target.value)}
+            value={userData.fullName || ''}
+            onChange={e => handleUserDataChange('fullName', e.target.value)}
+            onBlur={e => handleBlur('fullName', e.target.value)}
           />
-          <span className='error-message'>{errors.name}</span>
+          <span className='error-message'>{errors.fullName}</span>
         </div>
         <div>
           <InputField 

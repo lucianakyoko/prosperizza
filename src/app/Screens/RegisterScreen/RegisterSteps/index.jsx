@@ -9,12 +9,14 @@ import { PersonalInfoStep } from "../PersonalInfoStep";
 import { AddressInfoStep } from "../AddressInfoStep";
 import { AccessInfoStep } from "../AccessInfoStep";
 import { ConfirmationModal } from "../ConfirmationModal";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 export const RegisterSteps = () => {
   const {openModal, isOpen} = useContext(ModalContext);
-  const {userData, isUserStepFormValidate} = useContext(UserDataContext);
+  const {userData, updateFormData, isUserStepFormValidate} = useContext(UserDataContext);
   const [currentRegisterStep, setCurrentRegisterStep] = useState(1);
   const [isRegisterStepComplete, setIsRegisterStepComplete] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleNextRegisterStep = () => {
     if(!isUserStepFormValidate) {
@@ -28,16 +30,49 @@ export const RegisterSteps = () => {
   };
 
   const handlePreviousRegisterStep = () => {
+    if(!isUserStepFormValidate) {
+      setCurrentRegisterStep(currentRegisterStep);
+    } else {
+      setCurrentRegisterStep(currentRegisterStep - 1);
+    }
     if(currentRegisterStep <= 1) {
       setCurrentRegisterStep(1);
-    } else {
-      setCurrentRegisterStep(currentRegisterStep - 1)
     }
   };
-  const handleClick = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if(isUserStepFormValidate) {
-      openModal();
+      try {
+        setIsLoading(true);
+        await fetch('/api/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userData)
+        });
+        updateFormData({
+          fullName: '',
+          cpf: '',
+          cellphone: '',
+          cep: '',
+          rua: '',
+          numero: '',
+          complemento: '',
+          bairro: '',
+          cidade: '',
+          uf: '',
+          email: '',
+          password: ''
+        });
+      } catch (error) {
+        console.error('Erro ao enviar os dados do usuário', error.message)
+      } finally {
+        setIsLoading(false);
+        setCurrentRegisterStep(1);
+        openModal();
+      }
     }
   };
 
@@ -59,19 +94,29 @@ export const RegisterSteps = () => {
         <div className="buttons-wrapper">
           {currentRegisterStep <= 3 &&
           <button 
+            disabled={!isUserStepFormValidate}
             className={`secondary-button ${currentRegisterStep <= 1 ? 'secondary-button-not-allowed': ''}`}
             onClick={handlePreviousRegisterStep}
           >voltar</button>
         }
           {
             currentRegisterStep < 3 ?
-              <button className={`primary-button ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} onClick={handleNextRegisterStep}>Avançar</button>
+              <button 
+                onClick={handleNextRegisterStep}
+                disabled={!isUserStepFormValidate}
+                className={`primary-button ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} 
+              >Avançar</button>
               :
-              <button className={`primary-button ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} onClick={handleClick}>Finalizar</button>
+              <button 
+                type='submit'
+                onClick={handleSubmit}
+                disabled={!isUserStepFormValidate}
+                className={`primary-button ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} 
+              >Finalizar</button>
           }
         </div>
       </div>
-      
+      {isLoading && <LoadingSpinner text='Salvando...' />}
       {isOpen && <ConfirmationModal/>}
     </>
   );

@@ -55,8 +55,9 @@ export const AccessInfoStep = () => {
             name='email'
             type='email'
             label='E-mail*'
+            autoFocus
             placeholder='Digite seu e-mail'
-            value={userData.email}
+            value={userData.email || ''}
             onChange={e => handleUserDataChange('email', e.target.value)}
             onBlur={e => handleEmailValidation(e.target.value)}
           />
@@ -70,7 +71,7 @@ export const AccessInfoStep = () => {
               type={showPassword ? 'text' : 'password'}
               label='Senha*'
               placeholder='*****'
-              value={userData.password}
+              value={userData.password || ''}
               onChange={e => handleUserDataChange('password', e.target.value)}
             />
             {showPassword ?
@@ -97,7 +98,7 @@ export const AccessInfoStep = () => {
               type={showRepeatPassword ? 'text' : 'password'}
               label='Repita a Senha*'
               placeholder='*****'
-              value={repeatPassword}
+              value={repeatPassword || ''}
               onChange={e => setRepeatPassword(e.target.value)}
               onBlur={e => handlePasswordValidation(e.target.value)}
             />
