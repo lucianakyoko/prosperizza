@@ -5,7 +5,7 @@ import './about.css';
 
 export const AboutScreen = () => {
   return (
-    <main className="layout-container mt-7 sm:mt-9 lg:mt-12">
+    <main className="layout-container mt-7 sm:mt-9 lg:my-12">
       <div className="flex flex-col gap-8 mb-10 lg:w-[640px] lg:m-auto">
         <Title type="dark">Sobre</Title>
         <Section sectionTitle='Ponte para o mercado'>
@@ -19,11 +19,11 @@ export const AboutScreen = () => {
             Trata-se de um sistema de pedido online para uma pizzaria utilizando React.js.
           </p>
           <p>
-            Este é um projeto que que oferece a oportunidade de aplicar todos os conceitos desenvolvidos durante a trilha de aprendizado.
+            Este é um projeto que oferece a oportunidade de aplicar todos os conceitos desenvolvidos durante a trilha de aprendizado.
           </p>
         </Section>
 
-        <Section sectionTitle='Requisitos do Case'>
+        <Section sectionTitle='Requisitos do Case: Pizzaria'>
           <div className="about-section-content-container">
             <h3 className="about-section-title">Autenticação e Formulário de Login:</h3>
             <ul className="about-section-list-container">
@@ -97,7 +97,7 @@ export const AboutScreen = () => {
             Para a criação do layout da Prosperizza, utilizei como referência páginas de Pizzarias famosas e layouts encontrados no Dribbble.
           </p>
           <p>
-            Todo o protótipo foi desenvolvido no Figma.
+            Todo o protótipo foi desenvolvido no Figma. E as imagens foram geradas com a ajuda de IA.
           </p>
 
           <p>O nome Prosperizza surgiu da ideia de unir a Prosper Tech e pizzaria. Todo o conceito deste projeto brinca com a ideia de uma pizzaria para devs.</p>
@@ -108,6 +108,8 @@ export const AboutScreen = () => {
             <li>- React</li>
             <li>- Next.js 14</li>
             <li>- MongoDB Atlas</li>
+            <li>- Mongoose</li>
+            <li>- Axios</li>
             <li>- ContextAPI</li>
             <li>- TailwindCSS</li>
             <li>- Phosphor icons</li>
