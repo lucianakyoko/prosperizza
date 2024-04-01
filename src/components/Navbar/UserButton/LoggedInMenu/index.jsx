@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import { Bag, X  } from "@phosphor-icons/react/dist/ssr";
 
 export const LoggedInMenu = ({openMenu, handleClick}) => {
@@ -9,12 +10,13 @@ export const LoggedInMenu = ({openMenu, handleClick}) => {
       <div className="flex flex-col items-center gap-8 text-gray-100">
         <p className="text-xs text-center pb-2 border-b-2 border-dashed border-brown-100 w-full">Olá, Fulana</p>
         <div>
-          <p className={className} onClick={handleClick}>
-            Meu pedido
-            <Bag />
-          </p>
+          <NextLink href='/user'>
+            <p className={className} onClick={handleClick}>
+              Meu pedido
+              <Bag />
+            </p>
+          </NextLink>
         </div>
-
       </div>
     </div>
   );

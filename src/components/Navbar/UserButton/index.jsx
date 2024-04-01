@@ -8,7 +8,7 @@ import { LoggedOutMenu } from "./LoggedOutMenu";
 
 export const UserButton = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const isLoggedIn = false;
+  const isLoggedIn = true;
   const handleClick = () => setOpenMenu(!openMenu);
   
   return (
