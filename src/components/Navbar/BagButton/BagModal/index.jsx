@@ -7,20 +7,26 @@ import { OrderStep } from "./OrderStep";
 import { DeliveryAddressStep } from "./DeliveryAddressStep";
 import { EmptyBag } from "./EmptyBag";
 import { PaymentStep } from "./PaymentStep";
+import { LoginOrSignupModal, LoginOrSignupRequestModal } from "./LoginOrSignupRequestModal";
 
-export const BagModal = ({handleModal, bagItemsQuantity}) => {
+export const BagModal = ({ handleModal, bagItemsQuantity }) => {
   const [currentBagStep, setCurrentBagStep] = useState(1);
+  const isLoggedIn = true;
+  const [requestLogin, setRequestLogin] = useState(false);
   const [isBagStepComplete, setIsBagStepComplete] = useState(false);
 
   const handleNextBagStep = () => {
-    if(currentBagStep === 3) {
+    if (!isLoggedIn && currentBagStep === 1) {
+      setRequestLogin(true);
+    };
+    if (currentBagStep === 3) {
       setCurrentBagStep(3);
     } else {
       setCurrentBagStep(currentBagStep + 1);
     }
   };
   const handlePreviousBagStep = () => {
-    if(currentBagStep <= 1) {
+    if (currentBagStep <= 1) {
       setCurrentBagStep(1);
     } else {
       setCurrentBagStep(currentBagStep - 1)
@@ -29,36 +35,40 @@ export const BagModal = ({handleModal, bagItemsQuantity}) => {
 
   return (
     <SideModal handleModal={handleModal}>
-      {bagItemsQuantity <= 0 ?
-        <EmptyBag /> :
+      {requestLogin ? 
+        <LoginOrSignupRequestModal /> 
+        :
+        <div>
+          {bagItemsQuantity <= 0 ?
+            <EmptyBag /> :
 
-        <div className="flex flex-col gap-4">
-          <Stepper 
-            stepList={stepsList}
-            currentStep={currentBagStep} 
-            isComplete={isBagStepComplete} 
-          />
+            <div className="flex flex-col gap-4">
+              <Stepper
+                stepList={stepsList}
+                currentStep={currentBagStep}
+                isComplete={isBagStepComplete}
+              />
 
-          { currentBagStep === 1 && <OrderStep />}
-          { currentBagStep === 2 && <DeliveryAddressStep />}
-          { currentBagStep === 3 && <PaymentStep />}
-          
-          
-          <div className="buttons-wrapper">
-            <button 
-              className={`secondary-button ${currentBagStep <= 1 ? 'secondary-button-not-allowed' : ''}`} 
-              onClick={handlePreviousBagStep}>
-                Voltar
-              </button>
-            <button className="primary-button" onClick={handleNextBagStep} >
-              {currentBagStep === 1 && 'Confirmar pedido'}
-              {currentBagStep === 2 && 'Confirmar endereço'}
-              {currentBagStep === 3 && 'Pagar'}
-            </button>
-          </div>
+              {currentBagStep === 1 && <OrderStep />}
+              {currentBagStep === 2 && <DeliveryAddressStep />}
+              {currentBagStep === 3 && <PaymentStep />}
+
+              <div className="buttons-wrapper">
+                <button
+                  className={`secondary-button ${currentBagStep <= 1 ? 'secondary-button-not-allowed' : ''}`}
+                  onClick={handlePreviousBagStep}>
+                  Voltar
+                </button>
+                <button className="primary-button" onClick={handleNextBagStep} >
+                  {currentBagStep === 1 && 'Confirmar pedido'}
+                  {currentBagStep === 2 && 'Confirmar endereço'}
+                  {currentBagStep === 3 && 'Pagar'}
+                </button>
+              </div>
+            </div>
+          }
         </div>
       }
-
     </SideModal>
   );
 }

@@ -6,7 +6,7 @@ import { OrderItem } from "./OrderItem";
 import { OrderTotal } from "./OrderTotal";
 
 export const OrderStep = () => {
-  const {orderItems} = useContext(OrderContext);
+  const { orderItems } = useContext(OrderContext);
 
   return (
     <div className="flex flex-col gap-6">
@@ -15,10 +15,10 @@ export const OrderStep = () => {
         <div className="flex flex-col gap-4 items-end">
           <ul className="flex w-full flex-col gap-2 max-h-[200px] overflow-y-scroll">
             {orderItems.map(item => (
-              <OrderItem 
-                item={item} 
-                key={item.orderItemId} 
-                size={item.sizeName} 
+              <OrderItem
+                item={item}
+                key={item.orderItemId}
+                size={item.sizeName}
                 quantity={item.pizzaQuantity}
               />
             ))}
