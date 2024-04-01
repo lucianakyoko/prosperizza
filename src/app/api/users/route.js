@@ -22,6 +22,11 @@ export const POST = async (req) => {
 
   await dbConnect();
 
+  const isExistingUser = await User.findOne({email});
+  if(isExistingUser) {
+    return new NextResponse('E-mail já cadastrado!', { status: 400});
+  }
+
   await User.create({
     bairro,
     cellphone,

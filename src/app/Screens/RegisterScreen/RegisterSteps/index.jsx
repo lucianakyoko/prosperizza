@@ -10,9 +10,11 @@ import { AddressInfoStep } from "../AddressInfoStep";
 import { AccessInfoStep } from "../AccessInfoStep";
 import { ConfirmationModal } from "../ConfirmationModal";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { ErrorRegisterModal } from "../ErrorRegisterModal";
 
 export const RegisterSteps = () => {
   const {openModal, isOpen} = useContext(ModalContext);
+  const [openErrorModal, setOpenErrorModal] = useState(false);
   const {userData, updateFormData, isUserStepFormValidate} = useContext(UserDataContext);
   const [currentRegisterStep, setCurrentRegisterStep] = useState(1);
   const [isRegisterStepComplete, setIsRegisterStepComplete] = useState(false);
@@ -45,13 +47,23 @@ export const RegisterSteps = () => {
     if(isUserStepFormValidate) {
       try {
         setIsLoading(true);
-        await fetch('/api/users', {
+        const res = await fetch('/api/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(userData)
         });
+        
+        if(res.status === 400) {
+          setIsLoading(false);
+          setOpenErrorModal(true);
+          setCurrentRegisterStep(1);
+
+        } else {
+          setOpenErrorModal(false);
+        };
+
         updateFormData({
           fullName: '',
           cpf: '',
@@ -118,6 +130,7 @@ export const RegisterSteps = () => {
       </div>
       {isLoading && <LoadingSpinner text='Salvando...' />}
       {isOpen && <ConfirmationModal/>}
+      {openErrorModal && <ErrorRegisterModal/>}
     </>
   );
 }
