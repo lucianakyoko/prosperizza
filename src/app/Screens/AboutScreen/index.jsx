@@ -110,6 +110,7 @@ export const AboutScreen = () => {
             <li>- MongoDB Atlas</li>
             <li>- Mongoose</li>
             <li>- Axios</li>
+            <li>- uuid</li>
             <li>- ContextAPI</li>
             <li>- TailwindCSS</li>
             <li>- Phosphor icons</li>

@@ -33,21 +33,22 @@ export const PizzaDetails = () => {
     <Modal>
       <div className="flex flex-col gap-4 sm:gap-7 lg:gap-12 lg:px-7">
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-center">
-          <img src="/test-img.png" alt="teste" className="rounded-full w-[100px] sm:w-[160px] lg:w-[200px]" />
+          <img src={selectedPizza.imageUrl} alt={selectedPizza.pizzaName} className="rounded-full w-[100px] sm:w-[160px] lg:w-[200px]" />
           <div className="flex flex-col items-center gap-2 sm:gap-4 sm:items-start">
-            <Title type="dark">{selectedPizza.pizza}</Title>
+            <Title type="dark">{selectedPizza.pizzaName}</Title>
             <p className="text-sm sm:text-base text-brown-100">{selectedPizza.ingredients}</p>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 sm:gap-7 lg:gap-12">
           <div className="flex flex-col sm:flex-row gap-2 items-center sm:justify-center py-2 sm:py-4 px-4 bg-white rounded-2xl">
-            { sizes.map(([size, {price}]) => (
+            { sizes.map(([size, {price, size_id}]) => (
               <PizzaSizeOption 
-                key={size}  
+                key={size_id.toString()}  
                 value={size} 
                 price={price} 
                 selected={size === selectedSize}
+                onChange={() => handleSizeChange(size)}
                 onClick={() => handleSizeChange(size)}
               />
             ))

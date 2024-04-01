@@ -1,15 +1,10 @@
 'use client';
-import { useContext } from "react";
-import { ModalContext } from "@/context/ModalContext";
 
 import { Title } from "@/components/Title";
 import { PromotionItem } from "./PromotionItem";
-import { PizzaDetails } from "@/components/PizzaDetails";
 import { promotions } from "./promotions";
 
 export const PromotionSection = () => {
-  const { isOpen } = useContext(ModalContext);
-
   return (
     <section className="flex flex-col gap-5 lg:gap-6">
       <Title type='dark'>Promoções Que Debugam A Fome</Title>
@@ -18,8 +13,6 @@ export const PromotionSection = () => {
           <PromotionItem key={promotion.id} promotion={promotion} />
         ))}
       </ul>
-
-      { isOpen && <PizzaDetails />}
     </section>
   );
 }

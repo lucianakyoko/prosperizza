@@ -1,44 +1,67 @@
 'use client';
+import { v4 as uuidv4  } from "uuid";
 import { createContext, useState } from "react";
 
 export const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
   const [orderItems, setOrderItems] = useState([]);
+  
 
   const addItemToShoppingBag = (pizza, quantity, size) => {
-    const itemId = `${pizza.id}-${size}`;
-    const existingItem = orderItems.find(item => item.id === itemId);
-
+    const itemId = pizza._id;
+    const orderItemId = uuidv4();
+    const pizzaName = pizza.pizzaName;
+    const sizeId = pizza.sizes[size].size_id;
+    const sizeName = size;
+    const ingredients = pizza.ingredients
+    const pizzaImage = pizza.imageUrl
+    const pizzaPrice = pizza.sizes[size].price
+    const pizzaQuantity = quantity
+    const existingItem = orderItems.find(item => item.size_id === sizeId);
+ 
     if(existingItem) {
       setOrderItems(orderItems.map(item => {
-        if (item.id === itemId) {
-          return { ...item, quantity: item.quantity + quantity };
+        if (item.size_id === sizeId) {
+          return { 
+            ...item, 
+            pizzaQuantity: item.pizzaQuantity + pizzaQuantity
+          };
         }
         return item;
       }));
     } else {
-      setOrderItems([...orderItems, {id: itemId, pizza, quantity, size}]);
+      setOrderItems(
+        [...orderItems, {
+          size_id: sizeId,
+          orderItemId,
+          pizzaName: pizzaName, 
+          ingredients: ingredients,
+          imageUrl: pizzaImage,
+          price: pizzaPrice,
+          pizzaQuantity: pizzaQuantity,
+          sizeName: sizeName
+        }]);
     }
   };
 
-  const removeItemFromShoppingBag = pizzaId => {
-    setOrderItems(orderItems.filter(item => item.pizza.id !== pizzaId));
+  const removeItemFromShoppingBag = idToRemove  => {
+    setOrderItems(orderItems.filter(item => item.size_id !== idToRemove ));
   };
 
-  const increasePizzaQuantity = pizzaId => {
+  const increasePizzaQuantity = id => {
     setOrderItems(orderItems.map(item => {
-      if(item.pizza.id === pizzaId) {
-        return { ...item, quantity: item.quantity + 1};
+      if(item.orderItemId === id) {
+        return { ...item, pizzaQuantity: item.pizzaQuantity + 1};
       }
       return item;
     }))
   };
 
-  const decreaseItemQuantity = pizzaId => {
+  const decreaseItemQuantity = id => {
     setOrderItems(orderItems.map(item => {
-      if(item.pizza.id === pizzaId && item.quantity > 1) {
-        return {...item, quantity: item.quantity -1};
+      if(item.orderItemId === id && item.pizzaQuantity > 1) {
+        return {...item, pizzaQuantity: item.pizzaQuantity -1};
       };
       return item;
     }))
@@ -47,7 +70,7 @@ export const OrderProvider = ({ children }) => {
   const calculateTotalQuantity = () => {
     let totalQuantity = 0;
     orderItems.forEach(item => {
-      totalQuantity += item.quantity;
+      totalQuantity += item.pizzaQuantity;
     });
     return totalQuantity;
   };
@@ -55,8 +78,8 @@ export const OrderProvider = ({ children }) => {
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     orderItems.forEach(item => {
-      const { price } = item.pizza.sizes[item.size];
-      totalPrice += price * item.quantity;
+      const price = item.price;
+      totalPrice += price * item.pizzaQuantity;
     });
     return totalPrice;
   };

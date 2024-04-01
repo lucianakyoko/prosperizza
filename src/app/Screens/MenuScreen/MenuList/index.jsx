@@ -11,7 +11,7 @@ export const MenuList = ({pizzas}) => {
     <div>
       <ul className="flex gap-4 sm:gap-6 flex-wrap py-8 sm:py-9 lg:py-12">
         {pizzas.map(pizza => (
-          <PizzaItemCard key={pizza.id} pizza={pizza}/>
+          <PizzaItemCard key={pizza._id} pizza={pizza}/>
         ))}
       
         { isOpen && <PizzaDetails/> }

@@ -15,7 +15,12 @@ export const OrderStep = () => {
         <div className="flex flex-col gap-4 items-end">
           <ul className="flex w-full flex-col gap-2 max-h-[200px] overflow-y-scroll">
             {orderItems.map(item => (
-              <OrderItem item={item} key={item.id} size={item.size} quantity={item.quantity}/>
+              <OrderItem 
+                item={item} 
+                key={item.orderItemId} 
+                size={item.sizeName} 
+                quantity={item.pizzaQuantity}
+              />
             ))}
           </ul>
 

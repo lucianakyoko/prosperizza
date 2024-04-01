@@ -22,7 +22,7 @@ export const FavoritesSection = ({pizzas}) => {
 
       <ul className="flex flex-wrap gap-4 sm:gap-6 justify-start xl:justify-between">
         {favorites.map(pizza => (
-          <PizzaItemCard key={pizza.id} pizza={pizza}/>
+          <PizzaItemCard key={pizza._id} pizza={pizza}/>
         ))}
       </ul>
       { isOpen && <PizzaDetails /> }

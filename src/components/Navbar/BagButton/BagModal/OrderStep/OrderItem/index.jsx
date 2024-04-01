@@ -5,19 +5,18 @@ import { formatPrice } from "@/utils/formatPrice";
 
 export const OrderItem = ({item, size, quantity}) => {
   const {increasePizzaQuantity, decreaseItemQuantity, removeItemFromShoppingBag} = useContext(OrderContext);
-  const handleIncreaseQuantity = () => increasePizzaQuantity(item.pizza.id);
-  const handleDecreaseQuantity = () => {decreaseItemQuantity(item.pizza.id)};
-  const handleRemoveItemFromShoppingBag = () => {removeItemFromShoppingBag(item.pizza.id)};
+  const handleIncreaseQuantity = () => increasePizzaQuantity(item.orderItemId);
+  const handleDecreaseQuantity = () => {decreaseItemQuantity(item.orderItemId)};
+  const handleRemoveItemFromShoppingBag = () => {removeItemFromShoppingBag(item.size_id)};
   const pieces = size === 'individual' ? 4 : size === 'medio' ? 8 : 12;
-  const itemTotal = formatPrice((item.pizza.sizes[size].price) * quantity)
-
+  const itemTotal = item.price * quantity;
 
   return (
     <li className="w-full flex items-center gap-2 lg:gap-4 py-2 border-b-2 border-brown-150">
-      <img src="/test-img.png" alt="" className="w-[60px] lg:w-[90px] rounded-full" />
+      <img src={item.imageUrl} alt={item.pizzaName} className="w-[60px] lg:w-[90px] rounded-full" />
       <div className="w-full px-2 lg:px-4 border-l-2 border-dashed border-brown-150 flex flex-col lg:gap-4">
         <div className="flex flex-col gap-1">
-          <p className="text-base lg:text-xl text-brown-200">{item.pizza.pizza}</p>
+          <p className="text-base lg:text-xl text-brown-200">{item.pizzaName}</p>
           <p className="text-sm lg:text-base text-brown-200">Pizza {size === 'medio' ? 'média' : size} ({pieces} fatias)</p>
         </div>
         <div className="flex justify-between items-center">

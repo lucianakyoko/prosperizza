@@ -13,7 +13,7 @@ export const NewsItem = ({pizza}) => {
   return (
     <li className="w-[242px] rounded-t-full bg-brown-200 p-4 flex flex-col gap-4 items-center">
       <div className="relative">
-        <img src={pizza.image} className="w-[180px] h-[180px] rounded-full"/>
+        <img src={pizza.imageUrl} className="w-[180px] h-[180px] rounded-full"/>
         <div 
             className="absolute inset-0 hover:bg-black-900 rounded-full cursor-pointer flex justify-center items-center opacity-0 hover:opacity-100"
             onClick={handleClick}
@@ -23,7 +23,7 @@ export const NewsItem = ({pizza}) => {
       </div>
 
       <div className="text-gray-100 flex flex-col items-center gap-3">
-        <p>{pizza.pizza}</p>
+        <p>{pizza.pizzaName}</p>
         <span className="font-thin">{pizza.ingredients}</span>
       </div>
     </li>

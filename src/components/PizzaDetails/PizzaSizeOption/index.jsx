@@ -1,6 +1,6 @@
 import { formatPrice } from "@/utils/formatPrice";
 
-export const PizzaSizeOption = ({value, price, onClick, selected}) => {
+export const PizzaSizeOption = ({value, price, onClick, selected, onChange}) => {
   return (
     <label htmlFor={value} onClick={onClick} className="text-gray-850 cursor-pointer flex sm:flex-col gap-5 sm:gap-3 lg:items-center p-2 sm:p-4 border border-brown-150 rounded-xl">
       <div className="flex flex-col lg:flex-row gap-1 items-center lg:justify-center text-base font-medium">
@@ -16,6 +16,7 @@ export const PizzaSizeOption = ({value, price, onClick, selected}) => {
           id={value} 
           value={value}
           className=""
+          onChange={onChange}
           checked={selected}
         />
       </div>
