@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 import { useContext } from "react";
-import { SignIn, UserCircle } from "@phosphor-icons/react/dist/ssr";
+import { SignIn, UserCircle, X } from "@phosphor-icons/react/dist/ssr";
 import { LoginModal } from "@/components/LoginModal";
 import { ModalContext } from "@/context/ModalContext";
 
@@ -15,20 +15,23 @@ export const LoggedOutMenu = ({ openMenu, handleClick }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-8">
-      <p className="text-xs">Não logado</p>
+    <div className="relative mt-5">
+      <X onClick={handleClick} className="absolute top-[-24px] right-3 hover:text-yellow-200 cursor-pointer" />
+      <div className="flex flex-col items-center gap-8">
+        <p className="text-xs text-center pb-2 border-b-2 border-dashed border-brown-100 w-full">Não logado</p>
 
-      <div className="flex flex-col gap-4">
-        <p className={className} onClick={handleOpenLoginModal}>
-          <SignIn className="text-lg" />
-          Entrar
-        </p>
-        <NextLink href='/cadastro'>
-          <p className={className} onClick={handleClick}>
-            <UserCircle className="text-lg" />
-            Cadastrar conta
+        <div className="flex flex-col gap-4">
+          <p className={className} onClick={handleOpenLoginModal}>
+            <SignIn className="text-lg" />
+            Entrar
           </p>
-        </NextLink>
+          <NextLink href='/cadastro'>
+            <p className={className} onClick={handleClick}>
+              <UserCircle className="text-lg" />
+              Cadastrar conta
+            </p>
+          </NextLink>
+        </div>
       </div>
       {isOpen && <LoginModal handleClick={handleClick}/>}
     </div>

@@ -8,8 +8,8 @@ import { BagModal } from "./BagModal";
 export const BagButton = () => {
   const {calculateTotalQuantity} = useContext(OrderContext);
   const [openBagModal, setOpenBagModal] = useState(false);
-  const handleBagModal = () => setOpenBagModal(!openBagModal);
   const bagItemsQuantity = calculateTotalQuantity();
+  const handleBagModal = () => setOpenBagModal(!openBagModal);
 
   return (
     <div className="relative">
