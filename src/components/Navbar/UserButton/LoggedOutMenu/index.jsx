@@ -11,7 +11,6 @@ export const LoggedOutMenu = ({ openMenu, handleClick }) => {
   const {isOpen, openModal} = useContext(ModalContext);
   const handleOpenLoginModal = () => {
     openModal();
-    handleClick
   };
 
   return (
@@ -33,7 +32,7 @@ export const LoggedOutMenu = ({ openMenu, handleClick }) => {
           </NextLink>
         </div>
       </div>
-      {isOpen && <LoginModal handleClick={handleClick}/>}
+      {isOpen && <LoginModal />}
     </div>
   );
 }

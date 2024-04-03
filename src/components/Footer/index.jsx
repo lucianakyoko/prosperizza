@@ -23,7 +23,7 @@ export const Footer = () => {
           </div>
         </div>
         <div>
-          <p className="text-white font-extralight">Design e desenvolvimento feito com <span>♥</span> pela <a className="text-yellow-100 font-semibold hover:underline" href="http://lucianakyoko.com" target="_blank" rel="noopener noreferrer">Luciana Kyoko</a>
+          <p className="text-white font-extralight">Design e desenvolvimento feito com <span>♥</span> pela <a className="text-yellow-100 font-semibold hover:underline" href="https://lucianakyoko.vercel.app" target="_blank" rel="noopener noreferrer">Luciana Kyoko</a>
           </p>
         </div>
       </div>

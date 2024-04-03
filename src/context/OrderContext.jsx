@@ -6,7 +6,6 @@ export const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
   const [orderItems, setOrderItems] = useState([]);
-  
 
   const addItemToShoppingBag = (pizza, quantity, size) => {
     const itemId = pizza._id;
@@ -81,8 +80,10 @@ export const OrderProvider = ({ children }) => {
       const price = item.price;
       totalPrice += price * item.pizzaQuantity;
     });
+
     return totalPrice;
   };
+
 
   const values = {
     orderItems,
@@ -91,7 +92,8 @@ export const OrderProvider = ({ children }) => {
     increasePizzaQuantity,
     decreaseItemQuantity,
     calculateTotalQuantity,
-    calculateTotalPrice
+    calculateTotalPrice,
+    setOrderItems,
   };
 
   return (

@@ -8,12 +8,14 @@ import { signupStepsList } from "../signup-step-list";
 import { PersonalInfoStep } from "../PersonalInfoStep";
 import { AddressInfoStep } from "../AddressInfoStep";
 import { AccessInfoStep } from "../AccessInfoStep";
-import { ConfirmationModal } from "../ConfirmationModal";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { ErrorRegisterModal } from "../ErrorRegisterModal";
+import { LoginModal } from "@/components/LoginModal";
+import { AuthContext } from "@/context/AuthContext";
 
 export const RegisterSteps = () => {
   const {openModal, isOpen} = useContext(ModalContext);
+  const {isChecking} = useContext(AuthContext);
   const [openErrorModal, setOpenErrorModal] = useState(false);
   const {userData, updateFormData, isUserStepFormValidate} = useContext(UserDataContext);
   const [currentRegisterStep, setCurrentRegisterStep] = useState(1);
@@ -123,13 +125,14 @@ export const RegisterSteps = () => {
                 type='submit'
                 onClick={handleSubmit}
                 disabled={!isUserStepFormValidate}
-                className={`primary-button ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} 
+                className={`primary-button bg-yellow-100 ${isUserStepFormValidate ? '' : 'primary-button-not-allowed'}`} 
               >Finalizar</button>
           }
         </div>
       </div>
       {isLoading && <LoadingSpinner text='Salvando...' />}
-      {isOpen && <ConfirmationModal/>}
+      {isChecking && <LoadingSpinner text='Validando seus dados...' />}
+      {isOpen && <LoginModal alternativeText='Cadastro realizado com sucesso!'/>}
       {openErrorModal && <ErrorRegisterModal/>}
     </>
   );

@@ -12,10 +12,11 @@ export const UserDataProvider = ({children}) => {
   };
 
   const values = {
-    userData, 
+    userData,
+    setUserData, 
     updateFormData,
     isUserStepFormValidate, 
-    setIsUserStepFormValidate
+    setIsUserStepFormValidate,
   }
  
   return (

@@ -1,8 +1,14 @@
 import { Money, CreditCard, CurrencyDollarSimple, GitCommit } from "@phosphor-icons/react/dist/ssr";
 import { Title } from "@/components/Title";
 import { PaymentType } from "./PaymentType";
+import { useContext } from "react";
+import { formatPrice } from "@/utils/formatPrice";
+import { OrderContext } from "@/context/OrderContext";
 
 export const PaymentStep = () => {
+  const { calculateTotalPrice } = useContext(OrderContext);
+  const totalToPay = calculateTotalPrice();
+
   const paymentTypesList = [
     {
       id: 'cash',
@@ -34,15 +40,21 @@ export const PaymentStep = () => {
           <h3 className="text-base font-medium">Escolha a forma de pagamento</h3>
 
           <div className="">
-            {paymentTypesList.map(type => (
-              <PaymentType key={type.id} value={type.id} icon={type.icon} label={type.label} />
+            {paymentTypesList.map((type, i) => (
+              <PaymentType 
+                key={type.id} 
+                value={type.id} 
+                icon={type.icon} 
+                label={type.label} 
+                defaultChecked={i === 0}
+              />
             ))}
           </div>
         </div>
 
         <div className="flex items-center gap-12">
           <span className="text-lg font-light">Total</span>
-          <span className="font-semibold text-lg">R$98,69</span>
+          <span className="font-semibold text-lg text-gray-850">R${formatPrice(totalToPay)}</span>
         </div>
       </div>
     </div>

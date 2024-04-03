@@ -1,4 +1,4 @@
-export const PaymentType = ({ value, icon, label }) => {
+export const PaymentType = ({ value, icon, label, defaultChecked }) => {
   return (
     <label htmlFor={value} className="flex items-center gap-6 py-4 border-b-2 border-brown-150 border-dashed">
       <input
@@ -6,6 +6,7 @@ export const PaymentType = ({ value, icon, label }) => {
         name='payment-type'
         id={value}
         value={value}
+        defaultChecked={defaultChecked}
       />
       <div className="flex items-center gap-2">
         <span className="text-3xl">{icon}</span>
