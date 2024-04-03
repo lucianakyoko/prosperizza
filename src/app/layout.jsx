@@ -7,12 +7,14 @@ import { AuthContextProvider } from "@/context/AuthContext";
 export const metadata = {
   title: "Prosperizza",
   description: "A pizzaria favorita dos devs",
+
 };
 
 export default async function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body className="bg-gray-150">
+        <link rel="icon" href="/icon.png" />
         <AuthContextProvider>
             <OrderProvider>
               <header className="w-full bg-gray-900">

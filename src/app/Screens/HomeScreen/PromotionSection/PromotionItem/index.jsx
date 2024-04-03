@@ -4,7 +4,7 @@ export const PromotionItem = ({promotion}) => {
   return (
     <li className="bg-red-200 w-[328px] sm:w-[483px] rounded-2xl flex flex-col sm:flex-row gap-4 py-6 sm:px-6">
       <div className="relative w-[263px] rounded-2xl m-auto">
-        <img src="/test-img.png"  className="w-full"/>
+        <img src="/promotion.svg"  className="w-full"/>
         <div 
             className="absolute inset-0 hover:bg-black-900 rounded-2xl flex flex-col gap-2 justify-center items-center opacity-0 hover:opacity-100"
           >
