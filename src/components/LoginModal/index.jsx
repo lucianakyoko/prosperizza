@@ -7,6 +7,7 @@ import { Title } from "@/components/Title";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { ModalContext } from "@/context/ModalContext";
 import { useRouter } from "next/navigation";
+import NextLink from 'next/link'
 
 export const LoginModal = ({alternativeText=''}) => {
   const {closeModal} = useContext(ModalContext);
@@ -30,13 +31,13 @@ export const LoginModal = ({alternativeText=''}) => {
     <Modal>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-6 pb-8 lg:pb-20 w-full lg:w-[540px] m-auto"
+        className="flex flex-col gap-2 pb-4 lg:pb-20 w-full lg:w-[540px] m-auto"
       >
         <div className="flex flex-col gap-4 items-center">
           <SignIn  className="text-4xl text-gray-850" />
           <Title type="dark">Fazer Login</Title>
         </div>
-        <div className="flex flex-col gap-6 pb-8" >
+        <div className="flex flex-col gap-4" >
           <p className="text-gray-850 font-bold text-2xl">{alternativeText}</p>
           <p className="text-gray-850">Digite seu e-mail e senha:</p>
           <div className="flex flex-col gap-4 text-gray-850">
@@ -76,7 +77,16 @@ export const LoginModal = ({alternativeText=''}) => {
             <span className="text-red-100">{loginErrorMessage}</span>
           </div>
         </div>
-        <button type='submit' className="bg-yellow-100 primary-button w-1/2 m-auto">Entrar</button>
+        <div className="text-gray-850 flex flex-col items-center m-auto w-1/2">
+          <button type='submit' className="bg-yellow-100 primary-button w-full ">Entrar</button>
+          
+          <div className="flex flex-col gap-1 w-full items-center">
+            <span>ou</span>
+            <span onClick={() => closeModal()} className="secondary-button w-full cursor-pointer">
+              <NextLink href="/cadastro">Cadastrar</NextLink>
+            </span>
+          </div>
+        </div>
       </form>
       {isChecking && <LoadingSpinner text="Validando seus dados..." />}
     </Modal>
