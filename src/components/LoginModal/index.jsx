@@ -14,7 +14,7 @@ export const LoginModal = ({alternativeText='', handleModal}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const{login, loginErrorMessage, isAuthenticated, isChecking} = useContext(AuthContext);
+  const{login, loginErrorMessage, isAuthenticated, isChecking, setLoginErrorMessage} = useContext(AuthContext);
   const router = useRouter();
 
   const handlePasswordToggle = () => setShowPassword(!showPassword);
@@ -23,12 +23,18 @@ export const LoginModal = ({alternativeText='', handleModal}) => {
     e.preventDefault();
 
     login(email, password);
-    closeModal();
-    router.push('/');
+
+    if(isAuthenticated) {
+      closeModal();
+      router.push('/');
+    }
   }
 
-  const signupClick = (e) => {
-    handleModal();
+  const signupClick = () => {
+    if(handleModal) {
+      handleModal();
+    }
+    setLoginErrorMessage('');
     closeModal();
     router.push('/cadastro');
   };
@@ -44,8 +50,8 @@ export const LoginModal = ({alternativeText='', handleModal}) => {
           <Title type="dark">Fazer Login</Title>
         </div>
         <div className="flex flex-col gap-4" >
-          <p className="text-gray-850 font-bold text-2xl">{alternativeText}</p>
-          <p className="text-gray-850">Digite seu e-mail e senha:</p>
+          <p className={`${loginErrorMessage ? 'text-red-100' : 'text-gray-850'} font-bold text-2xl`}>{loginErrorMessage ? 'Tente novamente' : alternativeText}</p>
+          <p className="text-gray-850">Digite seu e-mail e senha ou <NextLink href='/cadastro'><span className="underline-offset-2 underline font-semibold">Crie um cadastro</span></NextLink></p>
           <div className="flex flex-col gap-4 text-gray-850">
             <InputField 
               name='email' 
@@ -85,7 +91,6 @@ export const LoginModal = ({alternativeText='', handleModal}) => {
         </div>
         <div className="text-gray-850 flex flex-col items-center m-auto w-1/2">
           <button type='submit' className="bg-yellow-100 primary-button w-full ">Entrar</button>
-          
           <div className="flex flex-col gap-1 w-full items-center">
             <span>ou</span>
             <span onClick={signupClick} className="secondary-button w-full cursor-pointer">

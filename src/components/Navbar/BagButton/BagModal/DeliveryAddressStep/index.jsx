@@ -15,7 +15,7 @@ export const DeliveryAddressStep = () => {
               name="cep" 
               placeholder="_____-___" 
               label="CEP" 
-              className='col-span-2'
+              className='col-span-1'
               value={user.cep}
               disabled 
             />
@@ -24,7 +24,7 @@ export const DeliveryAddressStep = () => {
               name="Rua" 
               placeholder="Digite o nome da sua rua" 
               label="Rua" 
-              className='col-span-4'
+              className='col-span-3'
               value={user.rua}
               readOnly
               disabled 

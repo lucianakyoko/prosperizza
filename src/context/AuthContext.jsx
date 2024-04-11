@@ -47,6 +47,7 @@ export const AuthContextProvider = ({ children }) => {
   const values = {
     user,
     loginErrorMessage,
+    setLoginErrorMessage,
     isAuthenticated,
     login,
     logout,
