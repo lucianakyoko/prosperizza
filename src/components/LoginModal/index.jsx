@@ -9,7 +9,7 @@ import { ModalContext } from "@/context/ModalContext";
 import { useRouter } from "next/navigation";
 import NextLink from 'next/link'
 
-export const LoginModal = ({alternativeText=''}) => {
+export const LoginModal = ({alternativeText='', handleModal}) => {
   const {closeModal} = useContext(ModalContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +26,12 @@ export const LoginModal = ({alternativeText=''}) => {
     closeModal();
     router.push('/');
   }
+
+  const signupClick = (e) => {
+    handleModal();
+    closeModal();
+    router.push('/cadastro');
+  };
 
   return (
     <Modal>
@@ -82,8 +88,9 @@ export const LoginModal = ({alternativeText=''}) => {
           
           <div className="flex flex-col gap-1 w-full items-center">
             <span>ou</span>
-            <span onClick={() => closeModal()} className="secondary-button w-full cursor-pointer">
-              <NextLink href="/cadastro">Cadastrar</NextLink>
+            <span onClick={signupClick} className="secondary-button w-full cursor-pointer">
+              <span
+              >Cadastrar</span>
             </span>
           </div>
         </div>

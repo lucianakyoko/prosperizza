@@ -84,7 +84,7 @@ export const BagModal = ({ handleModal, bagItemsQuantity }) => {
           </div>
         }
       </div>
-      {isOpen && <LoginModal alternativeText="Oops! Parece que você não está logado"/>}
+      {isOpen && <LoginModal handleModal={handleModal} alternativeText="Oops! Parece que você não está logado"/>}
       {isChecking && <LoadingSpinner text='Validando seus dados...' />}
       {isStepFinished && <OrderCompletedModal onClick={() => handleClick()} />}
 
