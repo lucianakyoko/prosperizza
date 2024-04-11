@@ -10,7 +10,7 @@ export const Modal = ({ children }) => {
   
   return (
     <div 
-      className="w-screen h-screen bg-black-900 fixed top-0 left-0 z-20 flex justify-center md:items-center"
+      className="w-screen h-screen bg-black-900 fixed top-0 left-0 z-50 flex justify-center md:items-center"
     >
       <div className="bg-gray-150 w-4/5 md:w-[700px] md:h-[540px] lg:h-[624px] lg:w-[942px] mt-6 rounded-2xl p-4 relative">
           <X 

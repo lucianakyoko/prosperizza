@@ -3,7 +3,7 @@ import { X } from "@phosphor-icons/react/dist/ssr";
 export const SideModal = ({ children, handleModal }) => {
   return (
     <div 
-      className={`w-screen h-screen bg-black-900 fixed z-10 top-0 left-0 flex justify-end overflow-hidden`}
+      className={`w-screen h-screen bg-black-900 fixed z-30 top-0 left-0 flex justify-end overflow-hidden`}
     >
       <div className="bg-gray-150 p-4 mr-4 lg:px-7 relative w-[360px] sm:w-[493px] lg:w-[531px]">
         <X  
